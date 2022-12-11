@@ -13,12 +13,12 @@ terraform {
     }
   }
 
-  # cloud {
-  #   organization = "benniemosher-dev"
-  #   workspaces {
-  #     name = "quest-infra"
-  #   }
-  # }
+  cloud {
+    organization = "benniemosher-dev"
+    workspaces {
+      name = "quest-infra"
+    }
+  }
 }
 
 provider "aws" {
