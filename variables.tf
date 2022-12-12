@@ -13,6 +13,13 @@ variable "cloudflare-config" {
   })
 }
 
+variable "config" {
+  description = "The config for your organization in Github."
+  type = object({
+    org-name = string
+  })
+}
+
 variable "region" {
   default     = "us-east-1"
   description = "The AWS region in which to stand up resources"

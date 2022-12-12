@@ -7,6 +7,7 @@
 
 *.tfplan
 *.auto.tfvars
+!config.auto.tfvars
 
 # Crash log files
 crash.log
