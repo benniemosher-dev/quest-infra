@@ -13,3 +13,5 @@ jobs:
     secrets:
       INFRACOST_API_KEY: ${{ secrets.INFRACOST_API_KEY }}
       TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+    with:
+      enable-cloudflare-tfvars: true
