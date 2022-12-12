@@ -11,6 +11,7 @@ jobs:
     name: Continuous Integration for Terraform
     uses: "benniemosher-dev/.github/.github/workflows/ci-terraform.yml@bam/add-terraform-workflow"
     secrets:
+      CLOUDFLARE_CONFIG: ${{ secrets.CLOUDFLARE_CONFIG }}
       INFRACOST_API_KEY: ${{ secrets.INFRACOST_API_KEY }}
       TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
     with:
