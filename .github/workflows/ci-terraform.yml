@@ -12,6 +12,8 @@ jobs:
     uses: "benniemosher-dev/.github/.github/workflows/ci-terraform.yml@bam/add-terraform-workflow"
     secrets:
       CLOUDFLARE_CONFIG: ${{ secrets.CLOUDFLARE_CONFIG }}
+      KEYBASE_USERNAME: ${{ secrets.KEYBASE_USERNAME }}
+      KEYBASE_PASSWORD: ${{ secrets.KEYBASE_PASSWORD }}
       INFRACOST_API_KEY: ${{ secrets.INFRACOST_API_KEY }}
       TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
     with:
