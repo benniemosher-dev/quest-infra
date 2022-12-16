@@ -18,3 +18,4 @@ jobs:
       TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
     with:
       enable-cloudflare-tfvars: true
+      iam-role-name: "terraform-github-oidc"

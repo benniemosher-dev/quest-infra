@@ -11,8 +11,8 @@
 Reach out to [@benniemosher](https://keybase.io/benniemosher) on Keybase and get access to his secrets repo then:
 
 ```bash
-git clone keybase://private/benniemosher/secrets
-ln -s $HOME/Code/personal/secrets/cloudflare.auto.tfvars ./cloudflare.auto.tfvars
+git clone keybase://team/benniemosher_dev/secrets
+ln -s $HOME/Code/benniemosher-dev/secrets/cloudflare.auto.tfvars ./cloudflare.auto.tfvars
 ```
 
 - To install dependencies needed run:
@@ -112,9 +112,9 @@ Project: benniemosher-dev/quest-infra
                                                                                                                                     
  OVERALL TOTAL                                                                                                               $17.43 
 ──────────────────────────────────
-31 cloud resources were detected:
+46 cloud resources were detected:
 ∙ 5 were estimated, 4 of which include usage-based costs, see https://infracost.io/usage-file
-∙ 26 were free, rerun with --show-skipped to see details
+∙ 41 were free, rerun with --show-skipped to see details
 
 ```
 <!-- cost_ends -->
@@ -122,58 +122,60 @@ Project: benniemosher-dev/quest-infra
 ## 📋 Documentation
 
 <!-- BEGIN_TF_DOCS -->
-
 ## Requirements
 
-| Name                                                                        | Version |
-| --------------------------------------------------------------------------- | ------- |
-| <a name="requirement_terraform"></a> [terraform](#requirement_terraform)    | ~> 1.3  |
-| <a name="requirement_aws"></a> [aws](#requirement_aws)                      | ~> 4.40 |
-| <a name="requirement_cloudflare"></a> [cloudflare](#requirement_cloudflare) | ~> 3.0  |
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.3 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 4.40 |
+| <a name="requirement_cloudflare"></a> [cloudflare](#requirement\_cloudflare) | ~> 3.0 |
 
 ## Providers
 
-| Name                                                                  | Version |
-| --------------------------------------------------------------------- | ------- |
-| <a name="provider_aws"></a> [aws](#provider_aws)                      | 4.46.0  |
-| <a name="provider_cloudflare"></a> [cloudflare](#provider_cloudflare) | 3.29.0  |
+| Name | Version |
+|------|---------|
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.47.0 |
+| <a name="provider_cloudflare"></a> [cloudflare](#provider\_cloudflare) | 3.30.0 |
 
 ## Modules
 
-| Name                                                                                      | Source                                                 | Version |
-| ----------------------------------------------------------------------------------------- | ------------------------------------------------------ | ------- |
-| <a name="module_certificate"></a> [certificate](#module_certificate)                      | github.com/benniemosher-dev/terraform-aws-acm          | v0.1.0  |
-| <a name="module_container-registry"></a> [container-registry](#module_container-registry) | github.com/benniemosher-dev/terraform-aws-ecr          | v0.1.0  |
-| <a name="module_container-service"></a> [container-service](#module_container-service)    | github.com/benniemosher-dev/terraform-aws-ecs          | v0.1.0  |
-| <a name="module_encryption-key"></a> [encryption-key](#module_encryption-key)             | github.com/benniemosher-dev/terraform-aws-kms          | v0.1.0  |
-| <a name="module_load-balancer"></a> [load-balancer](#module_load-balancer)                | github.com/benniemosher-dev/terraform-aws-loadbalancer | v0.2.0  |
-| <a name="module_network"></a> [network](#module_network)                                  | github.com/benniemosher-dev/terraform-aws-network      | v0.1.0  |
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_certificate"></a> [certificate](#module\_certificate) | github.com/benniemosher-dev/terraform-aws-acm | v0.1.0 |
+| <a name="module_container-registry"></a> [container-registry](#module\_container-registry) | github.com/benniemosher-dev/terraform-aws-ecr | v0.1.0 |
+| <a name="module_container-service"></a> [container-service](#module\_container-service) | github.com/benniemosher-dev/terraform-aws-ecs | v0.1.0 |
+| <a name="module_encryption-key"></a> [encryption-key](#module\_encryption-key) | github.com/benniemosher-dev/terraform-aws-kms | v0.1.0 |
+| <a name="module_load-balancer"></a> [load-balancer](#module\_load-balancer) | github.com/benniemosher-dev/terraform-aws-loadbalancer | v0.2.0 |
+| <a name="module_network"></a> [network](#module\_network) | github.com/benniemosher-dev/terraform-aws-network | v0.1.0 |
+| <a name="module_terraform-github-oidc"></a> [terraform-github-oidc](#module\_terraform-github-oidc) | ../terraform-aws-oidc | n/a |
 
 ## Resources
 
-| Name                                                                                                                                         | Type        |
-| -------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| [cloudflare_record.certificate](https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/resources/record)                  | resource    |
-| [cloudflare_record.dns-records](https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/resources/record)                  | resource    |
-| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity)                | data source |
+| Name | Type |
+|------|------|
+| [aws_iam_role_policy.terraform-github-oidc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) | resource |
+| [cloudflare_record.certificate](https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/resources/record) | resource |
+| [cloudflare_record.dns-records](https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/resources/record) | resource |
+| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_iam_policy_document.cloudwatch-kms](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
-| [aws_partition.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/partition)                            | data source |
-| [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region)                                  | data source |
-| [cloudflare_zone.zone](https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/data-sources/zone)                          | data source |
+| [aws_iam_policy_document.terraform-github-oidc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_partition.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/partition) | data source |
+| [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
+| [cloudflare_zone.zone](https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/data-sources/zone) | data source |
 
 ## Inputs
 
-| Name                                                                                 | Description                                              | Type                                                                                                               | Default                        | Required |
-| ------------------------------------------------------------------------------------ | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------ | :------: |
-| <a name="input_aws-profile"></a> [aws-profile](#input_aws-profile)                   | The local AWS profile with access to the service account | `string`                                                                                                           | `"benniemosher-quest-sandbox"` |    no    |
-| <a name="input_cloudflare-config"></a> [cloudflare-config](#input_cloudflare-config) | The config to connect Terraform to Cloudflare            | <pre>object({<br> account-id = optional(string, null)<br> api-token = string<br> cidrs = list(string)<br> })</pre> | n/a                            |   yes    |
-| <a name="input_region"></a> [region](#input_region)                                  | The AWS region in which to stand up resources            | `string`                                                                                                           | `"us-east-1"`                  |    no    |
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_aws-profile"></a> [aws-profile](#input\_aws-profile) | The local AWS profile with access to the service account | `string` | `"benniemosher-quest-sandbox"` | no |
+| <a name="input_cloudflare-config"></a> [cloudflare-config](#input\_cloudflare-config) | The config to connect Terraform to Cloudflare | <pre>object({<br>    account-id = optional(string, null)<br>    api-token  = string<br>    cidrs      = list(string)<br>  })</pre> | n/a | yes |
+| <a name="input_config"></a> [config](#input\_config) | The config for your organization in Github. | <pre>object({<br>    org-name = string<br>  })</pre> | n/a | yes |
+| <a name="input_region"></a> [region](#input\_region) | The AWS region in which to stand up resources | `string` | `"us-east-1"` | no |
 
 ## Outputs
 
-| Name                                                                                   | Description                                               |
-| -------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| <a name="output_load-balancer-dns"></a> [load-balancer-dns](#output_load-balancer-dns) | The Load Balancer DNS name to reach the deployed web app. |
-| <a name="output_url"></a> [url](#output_url)                                           | The URL for the web app.                                  |
-
+| Name | Description |
+|------|-------------|
+| <a name="output_load-balancer-dns"></a> [load-balancer-dns](#output\_load-balancer-dns) | The Load Balancer DNS name to reach the deployed web app. |
+| <a name="output_url"></a> [url](#output\_url) | The URL for the web app. |
 <!-- END_TF_DOCS -->
