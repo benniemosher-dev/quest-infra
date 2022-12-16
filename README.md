@@ -147,7 +147,7 @@ Project: benniemosher-dev/quest-infra
 | <a name="module_encryption-key"></a> [encryption-key](#module\_encryption-key) | github.com/benniemosher-dev/terraform-aws-kms | v0.1.0 |
 | <a name="module_load-balancer"></a> [load-balancer](#module\_load-balancer) | github.com/benniemosher-dev/terraform-aws-loadbalancer | v0.2.0 |
 | <a name="module_network"></a> [network](#module\_network) | github.com/benniemosher-dev/terraform-aws-network | v0.1.0 |
-| <a name="module_terraform-github-oidc"></a> [terraform-github-oidc](#module\_terraform-github-oidc) | ../terraform-aws-oidc | n/a |
+| <a name="module_terraform-github-oidc"></a> [terraform-github-oidc](#module\_terraform-github-oidc) | github.com/benniemosher-dev/terraform-aws-oidc | v0.1.0 |
 
 ## Resources
 

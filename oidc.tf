@@ -1,6 +1,6 @@
 module "terraform-github-oidc" {
-  source = "../terraform-aws-oidc"
-  # source = "github.com/benniemosher-dev/terraform-aws-oidc?ref=v0.1.0"
+  # source = "../terraform-aws-oidc"
+  source = "github.com/benniemosher-dev/terraform-aws-oidc?ref=v0.1.0"
 
   config = {
     github-organisation = "benniemosher-dev"
