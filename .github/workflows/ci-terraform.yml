@@ -11,6 +11,7 @@ jobs:
     name: Continuous Integration for Terraform
     uses: "benniemosher-dev/.github/.github/workflows/ci-terraform.yml@bam/add-terraform-workflow"
     secrets:
+      AWS_ACCOUNT_ID: ${{ secrets.QUEST_AWS_ACCOUNT_ID }}
       KEYBASE_USERNAME: ${{ secrets.KEYBASE_USERNAME }}
       KEYBASE_PAPERKEY: ${{ secrets.KEYBASE_PAPERKEY }}
       INFRACOST_API_KEY: ${{ secrets.INFRACOST_API_KEY }}
