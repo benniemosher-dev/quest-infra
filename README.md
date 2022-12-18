@@ -13,6 +13,7 @@ Reach out to [@benniemosher](https://keybase.io/benniemosher) on Keybase and get
 ```bash
 git clone keybase://team/benniemosher_dev/secrets
 ln -s $HOME/Code/benniemosher-dev/secrets/cloudflare.auto.tfvars ./cloudflare.auto.tfvars
+ln -s $HOME/Code/benniemosher-dev/secrets/tfcloud.auto.tfvars ./tfcloud.auto.tfvars
 ```
 
 - To install dependencies needed run:
@@ -112,9 +113,9 @@ Project: benniemosher-dev/quest-infra
                                                                                                                                     
  OVERALL TOTAL                                                                                                               $17.43 
 ──────────────────────────────────
-46 cloud resources were detected:
+31 cloud resources were detected:
 ∙ 5 were estimated, 4 of which include usage-based costs, see https://infracost.io/usage-file
-∙ 41 were free, rerun with --show-skipped to see details
+∙ 26 were free, rerun with --show-skipped to see details
 
 ```
 <!-- cost_ends -->
@@ -129,6 +130,7 @@ Project: benniemosher-dev/quest-infra
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.3 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 4.40 |
 | <a name="requirement_cloudflare"></a> [cloudflare](#requirement\_cloudflare) | ~> 3.0 |
+| <a name="requirement_tfe"></a> [tfe](#requirement\_tfe) | ~> 0.38 |
 
 ## Providers
 
@@ -136,6 +138,7 @@ Project: benniemosher-dev/quest-infra
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | 4.47.0 |
 | <a name="provider_cloudflare"></a> [cloudflare](#provider\_cloudflare) | 3.30.0 |
+| <a name="provider_tfe"></a> [tfe](#provider\_tfe) | 0.40.0 |
 
 ## Modules
 
@@ -147,30 +150,34 @@ Project: benniemosher-dev/quest-infra
 | <a name="module_encryption-key"></a> [encryption-key](#module\_encryption-key) | github.com/benniemosher-dev/terraform-aws-kms | v0.1.0 |
 | <a name="module_load-balancer"></a> [load-balancer](#module\_load-balancer) | github.com/benniemosher-dev/terraform-aws-loadbalancer | v0.2.0 |
 | <a name="module_network"></a> [network](#module\_network) | github.com/benniemosher-dev/terraform-aws-network | v0.1.0 |
-| <a name="module_terraform-github-oidc"></a> [terraform-github-oidc](#module\_terraform-github-oidc) | github.com/benniemosher-dev/terraform-aws-oidc | v0.1.0 |
 
 ## Resources
 
 | Name | Type |
 |------|------|
-| [aws_iam_role_policy.terraform-github-oidc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) | resource |
+| [aws_iam_access_key.tfcloud](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_access_key) | resource |
+| [aws_iam_user.tfcloud](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user) | resource |
+| [aws_iam_user_policy.tfcloud](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy) | resource |
 | [cloudflare_record.certificate](https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/resources/record) | resource |
 | [cloudflare_record.dns-records](https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/resources/record) | resource |
+| [tfe_variable.aws_access_key](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/variable) | resource |
+| [tfe_variable.aws_secret_access_key](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/variable) | resource |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_iam_policy_document.cloudwatch-kms](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
-| [aws_iam_policy_document.terraform-github-oidc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.tfcloud](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_partition.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/partition) | data source |
 | [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
 | [cloudflare_zone.zone](https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/data-sources/zone) | data source |
+| [tfe_workspace.this](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/data-sources/workspace) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_aws-profile"></a> [aws-profile](#input\_aws-profile) | The local AWS profile with access to the service account | `string` | `"benniemosher-quest-sandbox"` | no |
-| <a name="input_cloudflare-config"></a> [cloudflare-config](#input\_cloudflare-config) | The config to connect Terraform to Cloudflare | <pre>object({<br>    account-id = optional(string, null)<br>    api-token  = string<br>    cidrs      = list(string)<br>  })</pre> | n/a | yes |
-| <a name="input_config"></a> [config](#input\_config) | The config for your organization in Github. | <pre>object({<br>    org-name = string<br>  })</pre> | n/a | yes |
-| <a name="input_region"></a> [region](#input\_region) | The AWS region in which to stand up resources | `string` | `"us-east-1"` | no |
+| <a name="input_aws-config"></a> [aws-config](#input\_aws-config) | The config to connect Terraform to AWS. | <pre>object({<br>    profile = optional(string, null)<br>    region  = optional(string, "us-east-1")<br>  })</pre> | n/a | yes |
+| <a name="input_cloudflare-config"></a> [cloudflare-config](#input\_cloudflare-config) | The config to connect Terraform to Cloudflare. | <pre>object({<br>    account-id = optional(string, null)<br>    api-token  = string<br>    cidrs      = list(string)<br>  })</pre> | n/a | yes |
+| <a name="input_config"></a> [config](#input\_config) | The config for your organization in Github. | <pre>object({<br>    org-name     = string<br>    project-name = string<br>  })</pre> | n/a | yes |
+| <a name="input_tfcloud-config"></a> [tfcloud-config](#input\_tfcloud-config) | The config for connecting to TFCloud. | <pre>object({<br>    token = string<br>  })</pre> | n/a | yes |
 
 ## Outputs
 

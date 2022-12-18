@@ -11,6 +11,10 @@ terraform {
       source  = "cloudflare/cloudflare"
       version = "~> 3.0"
     }
+
+    tfe = {
+      version = "~> 0.38"
+    }
   }
 
   cloud {
@@ -22,8 +26,8 @@ terraform {
 }
 
 provider "aws" {
-  profile = var.aws-profile
-  region  = var.region
+  # profile = var.aws-config.profile
+  region = var.aws-config.region
 
   default_tags {
     tags = {
@@ -36,4 +40,8 @@ provider "aws" {
 
 provider "cloudflare" {
   api_token = var.cloudflare-config.api-token
+}
+
+provider "tfe" {
+  token = var.tfcloud-config.token
 }

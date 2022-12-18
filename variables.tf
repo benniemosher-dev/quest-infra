@@ -1,11 +1,13 @@
-variable "aws-profile" {
-  default     = "benniemosher-quest-sandbox"
-  description = "The local AWS profile with access to the service account"
-  type        = string
+variable "aws-config" {
+  description = "The config to connect Terraform to AWS."
+  type = object({
+    profile = optional(string, null)
+    region  = optional(string, "us-east-1")
+  })
 }
 
 variable "cloudflare-config" {
-  description = "The config to connect Terraform to Cloudflare"
+  description = "The config to connect Terraform to Cloudflare."
   type = object({
     account-id = optional(string, null)
     api-token  = string
@@ -16,12 +18,14 @@ variable "cloudflare-config" {
 variable "config" {
   description = "The config for your organization in Github."
   type = object({
-    org-name = string
+    org-name     = string
+    project-name = string
   })
 }
 
-variable "region" {
-  default     = "us-east-1"
-  description = "The AWS region in which to stand up resources"
-  type        = string
+variable "tfcloud-config" {
+  description = "The config for connecting to TFCloud."
+  type = object({
+    token = string
+  })
 }
